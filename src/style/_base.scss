@@ -1,0 +1,135 @@
+@charset "UTF-8";
+$primary:#f75959;
+$active:#ff3838;
+$number:'din',
+Arial,
+Helvetica,
+sans-serif;
+@function px2rem($px, $base-font-size: 75px) {
+    @return ($px / $base-font-size) * 1rem;
+}
+
+@mixin bg($url, $size:cover) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: $size;
+}
+
+//圆角
+@mixin radius($radius:4px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+//定位上下左右居中
+@mixin center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+//全宽底部线条
+@mixin bb($color:#e5e5e5) {
+    position: relative;
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $color;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+}
+
+@mixin bt($color:#e5e5e5) {
+    position: relative;
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 1px;
+        background-color: $color;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+}
+
+//flex 布局和 子元素 对其方式
+@mixin flex($align: center, $type: space-between) {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: flex;
+    -webkit-align-items: $align;
+    align-items: $align;
+    -webkit-justify-content: $type;
+    justify-content: $type;
+}
+
+//多行超出显示省略号
+@mixin lineClamp($line:2) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+.prompt-call {
+    padding: 30px 20px;
+    .tel-form {
+        position: relative;
+    }
+    .van-icon-phone-o {
+        font-size: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #999;
+    }
+    .input {
+        width: 100%;
+        height: 40px;
+        line-height: 20px;
+        padding: 10px;
+        border: 1px solid #e5e5e5;
+        margin-bottom: 40px;
+        font-size: 16px;
+        color: #333;
+        padding-left: 40px;
+    }
+    .van-dialog__confirm,
+    .van-dialog__confirm:active {
+        background-color: $primary;
+        color: #fff;
+    }
+}
